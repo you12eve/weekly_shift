@@ -22,3 +22,34 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+###　データベース設計
+
+## usersテーブル
+
+|Column     |Type   |Options                  |
+|nickname   |string |null: false              |
+|password   |string |null: false              |
+
+### アソシエーション
+
+has_many :workers
+has_many :comments
+
+## workersテーブル
+|Column       |Type   |Options                  |
+|name         |string |null: false              |
+|note(備考)    |string |                         |
+
+belongs_to :user
+has_many :comments
+
+
+## commentテーブル
+
+|Column     |Type   |Options                       |
+|tex        |string |null: false                   |
+|user_id    |integer|null: false, foreign_key: true|
+
+belongs_to :user
+belongs_to :worker
